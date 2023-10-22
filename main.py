@@ -1,32 +1,46 @@
+from typing import Union
 from fastapi import FastAPI
-import cv2
-import io
-import numpy as np
 from PIL import Image
 from starlette.responses import StreamingResponse
+import io
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from typing import Union
+
+import camera
+import model
+import arduno_com
 
 app = FastAPI()
 
-def capture_image():
-    # Capture an image from the webcam.
-    cap = cv2.VideoCapture(0)
-    ret, frame = cap.read()
-    cap.release()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Replace with your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-    if not ret:
-        return None
+# Create a global buffer to store the captured image
 
-    # Convert the image to bytes.
-    _, buffer = cv2.imencode(".jpg", frame)
-    img_bytes = buffer.tobytes()
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
-    return img_bytes
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}
 
 @app.get("/capture")
-async def get_capture():
-    img_bytes = capture_image()
-
-    if img_bytes is not None:
-        return StreamingResponse(io.BytesIO(img_bytes), media_type="image/jpeg")
-
-
+def get_capture():
+    try :
+        img_bytes = camera.run_camera()
+        model_prediction = model.image_classification(img_bytes)
+        if (model_prediction) :
+            arduno_com.send_command()
+            return {"result": 1}
+        else :
+            return {"result": 0}
+        
+    except Exception as e:
+        return {"error": str(e)}
