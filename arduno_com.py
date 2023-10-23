@@ -11,6 +11,7 @@ def send_command():
         response = ser.readline().decode().strip()
         print("Arduino Response:", response)
         return response
+    
     except Exception as e:
         return str(e)
     finally:

@@ -1,11 +1,10 @@
-from typing import Union
-from fastapi import FastAPI
-from PIL import Image
+from fastapi import FastAPI, HTTPException
 from starlette.responses import StreamingResponse
-import io
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Union
+from pydantic import BaseModel
+import json
 
 import camera
 import model
@@ -21,24 +20,47 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Create a global buffer to store the captured image
+try:
+    with open("db.json", "r") as file:
+        db = json.load(file)
+except FileNotFoundError:
+    db = []
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+class BottleItem(BaseModel):
+    bottle_number: int
+    date: str
+    time: str
+@app.post("/store/")
+def store_bottle_data(item: BottleItem):
+    item.bottle_number = db.__len__()+1
+    print(item)
+    db.append(item.dict())
+    
+    with open('db.json', 'w') as file:
+        json.dump(db, file, indent=4)
+    
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+    return {"message": "Data stored successfully"}
+
+@app.get("/get_all")
+def get_all_bottle_data():
+    return db
+
+@app.get("/get_count")
+def get_all_bottle_data():
+    return db.__len__()
 
 @app.get("/capture")
 def get_capture():
     try :
         img_bytes = camera.run_camera()
-        model_prediction = model.image_classification(img_bytes)
+        model_prediction = model.image_classification()
         if (model_prediction) :
-            arduno_com.send_command()
-            return {"result": 1}
+            res = arduno_com.send_command()
+            if res=="Water Detected" :
+                return {"result": 0}
+            else :
+                return {"result": 1}
         else :
             return {"result": 0}
         
