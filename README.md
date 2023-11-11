@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Loading](https://github.com/Wasuthoo/bottleye/assets/67475566/b0d3293c-b381-4db5-b8ea-6cf92bbe960a)
 
-## Getting Started
+Smart IoT Plastic Water Bottle Sorting Machine
+## Overview
+This innovative project leverages the power of IoT and deep learning to create a sophisticated plastic water bottle sorting machine. Deployed on AWS EC2, it utilizes a Next.js frontend to communicate commands to a FastAPI backend, initiating the machine's operations.
 
-First, run the development server:
+## Key Features
+Next.js Frontend: A user-friendly interface to control and monitor the machine's activities.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+FastAPI Backend: Efficiently receives commands from the frontend and orchestrates machine actions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Image Classification: Utilizes deep learning to capture and analyze images, determining the presence of a bottle.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Water Level Measurement: Employs an Arduino sensor to detect the water level in the bottle.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Automated Sorting Mechanism: If a bottle is detected and it's empty, a servo motor is activated to deposit the bottle for recycling.
 
-## Learn More
+Real-Time Monitoring: The frontend dynamically displays the number of bottles sorted, offering real-time updates.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
+Hosted on AWS EC2 for robust, scalable performance.
+The backend is built with FastAPI for quick, asynchronous processing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## DEMO
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+https://github.com/Wasuthoo/bottleye/assets/67475566/8c3476d0-069b-4cff-9236-5cf5d8a04b2d
 
-## Deploy on Vercel
+## Team Members
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![IOT Project G1](https://github.com/Wasuthoo/bottleye/assets/67475566/b86ce9f8-6fc0-44df-b3b1-aae368552815)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
