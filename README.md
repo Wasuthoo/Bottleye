@@ -1,8 +1,8 @@
 ![Loading](https://github.com/Wasuthoo/bottleye/assets/67475566/b0d3293c-b381-4db5-b8ea-6cf92bbe960a)
 
-Smart IoT Plastic Water Bottle Sorting Machine
 ## Overview
-This innovative project leverages the power of IoT and deep learning to create a sophisticated plastic water bottle sorting machine. Deployed on AWS EC2, it utilizes a Next.js frontend to communicate commands to a FastAPI backend, initiating the machine's operations.
+This innovative project leverages the power of IoT and deep learning to create a sophisticated plastic water bottle sorting machine. 
+Deployed on AWS EC2, it utilizes a Next.js frontend to communicate commands to a FastAPI backend, initiating the machine's operations.
 
 ## Key Features
 Next.js Frontend: A user-friendly interface to control and monitor the machine's activities.
