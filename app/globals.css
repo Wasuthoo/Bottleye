@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Specify the desired weight here */
+  }
+  
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1rem);
+  }
+}
