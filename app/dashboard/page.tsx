@@ -10,7 +10,7 @@ function Dashboard() {
 
     useEffect(() => {
         // Fetch data from the backend API using Axios
-        axios.get('http://18.209.16.118/get_all')
+        axios.get('http://127.0.0.1:8000/get_all')
             .then(response => {
                 setData(response.data);
                 setIsLoading(false);

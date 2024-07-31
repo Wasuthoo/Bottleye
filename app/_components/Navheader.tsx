@@ -14,7 +14,7 @@ const Navheader = () => {
   useEffect(() => {
     // Make an Axios request to fetch the bottle number
     async function fetchData() {
-      axios.get('http://18.209.16.118/get_count')
+      axios.get('http://127.0.0.1:8000/get_count')
       .then(response => {
         // Assuming your API response contains the bottle number
         setBottleNumber(response.data);

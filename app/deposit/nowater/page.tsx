@@ -12,8 +12,10 @@ export default function Water() {
       
       const now = new Date();
       const bangkokTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Bangkok" }));
-      const formattedDate = bangkokTime.toISOString().slice(0, 10);
-      const formattedTime = bangkokTime.toISOString().slice(11, 19);
+      
+      const formattedDate = bangkokTime.toISOString().split('T')[0];
+      const formattedTime = bangkokTime.toTimeString().split(' ')[0];
+      
       console.log(formattedTime);
   
       const dataToSend = {
@@ -23,7 +25,7 @@ export default function Water() {
   
       };
       
-      await axios.post('http://18.209.16.118/store/', dataToSend);
+      await axios.post('http://127.0.0.1:8000/store/', dataToSend);
   
     }
 
